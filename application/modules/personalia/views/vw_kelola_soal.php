@@ -12,23 +12,7 @@
 		<div class="ibox float-e-margins">
 			<div class="ibox-title">
 				<h5>Mata Pelajaran</h5> 
-				<div class="ibox-tools">
-					<a class="collapse-link">
-						<i class="fa fa-chevron-up"></i>
-					</a>
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						<i class="fa fa-wrench"></i>
-					</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#">Config option 1</a>
-						</li>
-						<li><a href="#">Config option 2</a>
-						</li>
-					</ul>
-					<a class="close-link">
-						<i class="fa fa-times"></i>
-					</a>
-				</div>
+				
 			</div>
 			<div class="ibox-content">
 				<div class="row text-center">
@@ -85,26 +69,26 @@
 														<td width="2%"><?php echo $k_pilihan . '.' ; ?></td>
 														<td><?php echo $v[$v_pilihan] ?></td>
 													</tr>
-												<?php else: ?>
-													<tr>
-														<td width="2%"><?php echo $k_pilihan . '.' ; ?></td>
-														<td><?php echo $v[$v_pilihan] ?></td>
-													</tr>
-												<?php endif ?>
+													<?php else: ?>
+														<tr>
+															<td width="2%"><?php echo $k_pilihan . '.' ; ?></td>
+															<td><?php echo $v[$v_pilihan] ?></td>
+														</tr>
+													<?php endif ?>
 
-											<?php endforeach ?>
+												<?php endforeach ?>
 
-										</tbody>
-									</table>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
-						</div>
-					<?php endforeach ?>	
+						<?php endforeach ?>	
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 <div class="modal inmodal fade" id="modal-soal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -214,28 +198,25 @@
 
 	function showPleaseWait() {
 		var modalLoading = '<div class="modal" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false role="dialog">\
-		<div class="modal-dialog" id="modal-dialog">\
-			<div class="modal-content">\
-				<div class="modal-header">\
-					<h4 class="modal-title">Mohon Tunggu...</h4>\
-				</div>\
-				<div class="modal-body">\
-					<div class="progress">\
-						<div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"\
-						aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%; height: 40px">\
-					</div>\
-				</div>\
-			</div>\
-		</div>\
-	</div>\
-</div>';
-$(document.body).append(modalLoading);
-$("#pleaseWaitDialog").modal("show");
-}
+  <div class="modal-dialog" id="modal-dialog">\
+  <div class="modal-content">\
+  <div class="modal-body">\
+  <div class="sk-spinner sk-spinner-three-bounce">\
+  <div class="sk-bounce1"></div>\
+  <div class="sk-bounce2"></div>\
+  <div class="sk-bounce3"></div>\
+  </div>\
+  </div>\
+  </div>\
+  </div>\
+  </div>';
+		$(document.body).append(modalLoading);
+		$("#pleaseWaitDialog").modal("show");
+	}
 
-function hidePleaseWait() {
-	$("#pleaseWaitDialog").modal("hide");
-}
+	function hidePleaseWait() {
+		$("#pleaseWaitDialog").modal("hide");
+	}
 
 
  //Tampilkan Modal 

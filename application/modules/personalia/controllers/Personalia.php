@@ -199,6 +199,9 @@ class Personalia extends CI_Controller {
 		$this->template->js_add('assets/templates/inspinia_271/js/plugins/jasny/jasny-bootstrap.min.js');
 		$this->template->js_add('assets/templates/inspinia_271/js/plugins/clockpicker/clockpicker.js');
 		$this->template->js_add('assets/templates/inspinia_271/js/plugins/jsKnob/jquery.knob.js');
+		$this->template->css_add('assets/templates/inspinia_271/css/plugins/sweetalert/sweetalert.css');
+		$this->template->js_add('assets/templates/inspinia_271/js/plugins/sweetalert/sweetalert.min.js');
+
 		$this->template->title('Pengaturan Lowongan');
 		$this->template->render('vw_lowongan', $data);
 	}
@@ -223,8 +226,9 @@ class Personalia extends CI_Controller {
 			redirect('personalia/login');
 		}
 		$this->template->css_add('assets/templates/inspinia_271/css/plugins/dataTables/datatables.min.css');
-
+		$this->template->css_add('assets/plugins/iziModal/css/iziModal.min.css');
 		$this->template->js_add('assets/templates/inspinia_271/js/plugins/dataTables/datatables.min.js');	
+		$this->template->js_add('assets/plugins/iziModal/js/iziModal.min.js');
 		$this->template->title("Arsip Pegawai Lulus");
 		$this->template->render('vw_arsip_pegawai');
 	}
@@ -343,7 +347,7 @@ class Personalia extends CI_Controller {
 					(
 						'nik' => $k,
 						$key => $value
-						);	
+					);	
 
 					$this->db->insert('daftar_nilai', $col2);
 				}
@@ -352,6 +356,24 @@ class Personalia extends CI_Controller {
 		}
 
 		
+	}
+
+	public function seleksi_administrasi() 
+	{
+		if ($data['status']  = $this->input->post('verif')) {
+			$data['nik'] = $this->input->post('nik');
+			if ($data['status'] === '1' && is_connected()) {
+				$data_pelamar = $this->md_personalia->jsonGetDetailSeluruhPelamar($data['nik']);
+				$email['nama'] = $data_pelamar['nama'];
+				$email['email'] = $data_pelamar['email'];
+				$email['waktu'] = $last_pengaturan['konfig_periode']['full_ujian_akademik'];
+				$email['tempat'] = $last_pengaturan['konfig_umum']['lokasi_ujian_akademik'];
+
+				$this->send_mail($email, 'akademik');
+			}
+
+			$this->md_personalia->setVerifikasi($data);
+		}
 	}
 
 	public function seleksi()
@@ -489,6 +511,8 @@ class Personalia extends CI_Controller {
 		$this->template->title('Daftar Pelamar');
 		$this->template->css_add('assets/templates/inspinia_271/css/plugins/dataTables/datatables.min.css');
 		$this->template->js_add('assets/templates/inspinia_271/js/plugins/dataTables/datatables.min.js');
+		$this->template->css_add('assets/plugins/iziModal/css/iziModal.min.css');
+		$this->template->js_add('assets/plugins/iziModal/js/iziModal.min.js');
 		$this->template->render('vw_daftar_pelamar');
 	}
 

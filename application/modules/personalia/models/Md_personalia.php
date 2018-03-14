@@ -62,13 +62,13 @@ class Md_personalia extends CI_Model {
 				$table .= "<table class = \"table table-striped\"  width=\"100%\"> "  ;
 				$table .= "<thead>" ;
 				$table .= "<tr>";
-				$table .= "<th width=\"30%\">NIK</th>";
-				$table .= "<th width=\"50%\">Nama</th>";
-				$table .= "<th> Wawancara Rektor</th>";
-				$table .= "<th> Wawancara  WR 1</th>";
-				$table .= "<th> Wawancara  WR 2</th>";
-				$table .= "<th> Wawancara  WR 3</th>";
-				$table .= "<th> Wawancara  Yayasan</th>";
+				$table .= "<th width=\"5%\">NIK</th>";
+				$table .= "<th width=\"45%\">Nama</th>";
+				$table .= "<th width=\"10%\">Rektor</th>";
+				$table .= "<th width=\"10%\">WR 1</th>";
+				$table .= "<th width=\"10%\">WR 2</th>";
+				$table .= "<th width=\"10%\">WR 3</th>";
+				$table .= "<th width=\"10%\">Yayasan</th>";
 				$table .= "</tr>";
 				$table .= "</thead>" ;
 				$table .= "<tbody>";
@@ -130,7 +130,7 @@ class Md_personalia extends CI_Model {
 							(
 								'nik' => $k,
 								$key => $value
-								);	
+							);	
 
 							$this->db->insert('daftar_nilai', $col2);
 						}
@@ -323,12 +323,12 @@ class Md_personalia extends CI_Model {
 		$this->datatables->join('mst_subbag','pelamar.id_subbag = mst_subbag.id_subbag ');
 		$this->datatables->join('mst_fakultas','pelamar.id_fakultas = mst_fakultas.id_fakultas ');
 		$this->datatables->where('pelamar.status', '4');
-		$this->datatables->add_column('nik_link', '<a  onclick="showModals($1)">$1</a>', 'nik');
+		$this->datatables->add_column('nik_link', '<a  class="text-info" onclick="showModals($1)">$1</a>', 'nik');
 		return $this->datatables->generate();
 	}
 	public function jsonGetDetailSeluruhPelamar($nik)
 	{
-		$this->db->select('pelamar.*, mst_fakultas.nama_fakultas, mst_subbag.nama_subbag, mst_tingkatan.keterangan, daftar_nilai.*, pelamar.nik');
+		$this->db->select('pelamar.*, mst_fakultas.nama_fakultas, mst_subbag.nama_subbag, mst_tingkatan.keterangan, daftar_nilai.nilai_akademik, daftar_nilai.nilai_psikotest, cast(((daftar_nilai.nilai_w_rektor + daftar_nilai.nilai_w_wr_1 + daftar_nilai.nilai_w_wr_2 + daftar_nilai.nilai_w_wr_3 + daftar_nilai.nilai_w_yayasan) / 5) as unsigned) as nilai_wawancara,  cast(((daftar_nilai.nilai_akademik + daftar_nilai.nilai_psikotest + ((daftar_nilai.nilai_w_rektor + daftar_nilai.nilai_w_wr_1 + daftar_nilai.nilai_w_wr_2 + daftar_nilai.nilai_w_wr_3 + daftar_nilai.nilai_w_yayasan) / 5)) / 3 ) as unsigned) as rata_rata  , pelamar.nik');
 		$this->db->from('pelamar');
 		$this->db->join('mst_fakultas', 'pelamar.id_fakultas = mst_fakultas.id_fakultas');
 		$this->db->join('mst_subbag', 'pelamar.id_subbag = mst_subbag.id_subbag');
@@ -348,7 +348,7 @@ class Md_personalia extends CI_Model {
 		$this->datatables->join('mst_tingkatan', 'pelamar.status = mst_tingkatan.id_tingkatan');
 		$this->datatables->join('mst_subbag', 'pelamar.id_subbag = mst_subbag.id_subbag' );
 		$this->datatables->where('id_periode', $id_periode);
-		$this->datatables->add_column('nik_link', '<a  onclick="showModals($1)">$1</a>', 'nik');
+		$this->datatables->add_column('nik_link', '<a  class="text-info" onclick="showModals($1)">$1</a>', 'nik');
 		return $this->datatables->generate();
 
 	}
@@ -364,7 +364,7 @@ class Md_personalia extends CI_Model {
 			$query = "select pelamar.* from pelamar join daftar_nilai ON pelamar.nik = daftar_nilai.nik WHERE pelamar.id_fakultas = '{$id_fakultas}' AND pelamar.id_subbag = '{$id_subbag}' AND pelamar.status = 2 ORDER BY daftar_nilai.nilai_psikotest DESC limit {$jumlah}";
 			break;
 			case '4':
-			$query = "select pelamar.*, (daftar_nilai.nilai_w_rektor + daftar_nilai.nilai_w_wr_1 + daftar_nilai.nilai_w_wr_2 + daftar_nilai.nilai_w_wr_3 +   daftar_nilai.nilai_w_yayasan) /  5 as rata_rata  from pelamar join daftar_nilai ON pelamar.nik = daftar_nilai.nik WHERE pelamar.id_fakultas = '{$id_fakultas}' AND pelamar.id_subbag = '{$id_subbag}' AND pelamar.status = 3 ORDER BY rata_rata DESC limit {$jumlah}";
+			$query = "select pelamar.*, (daftar_nilai.nilai_w_rektor + daftar_nilai.nilai_w_wr_1 + daftar_nilai.nilai_w_wr_2 + daftar_nilai.nilai_w_wr_3 +   daftar_nilai.nilai_w_yayasan) /  5 as rata_rata from pelamar join daftar_nilai ON pelamar.nik = daftar_nilai.nik WHERE pelamar.id_fakultas = '{$id_fakultas}' AND pelamar.id_subbag = '{$id_subbag}' AND pelamar.status = 3 ORDER BY rata_rata DESC limit {$jumlah}";
 			break;
 			default:
 				# code...
@@ -555,6 +555,10 @@ class Md_personalia extends CI_Model {
 		$this->db->where('id_periode', $id_periode);
 		$this->db->where('status >', '0');
 		$data['diverifikasi'] = $this->db->get('pelamar')->num_rows();
+
+		$this->db->where('id_periode', $id_periode);
+		$this->db->where('status ', '-1');
+		$data['ditolak'] = $this->db->get('pelamar')->num_rows();
 
 		$this->db->where('id_periode', $id_periode);
 		$tmp = $this->db->get('detail_jabatan_periode')->result_array();

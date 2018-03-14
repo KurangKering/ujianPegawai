@@ -111,7 +111,7 @@
      .html('<button type="button" id="btn-show-seleksi" style="display: none" class="btn btn-primary" >Seleksi [+]</button> &nbsp;&nbsp; <button class="btn btn-info" id="btn-cetak-akademik" style="display:none" type="button">Cetak Data</button>');
      $('#btn-show-seleksi').click(function() {
 
-      $('#tool-seleksi').toggle();
+      $('#tool-seleksi').toggle('fast');
       if ($('#btn-show-seleksi').html() === 'Seleksi [+]') {
         $('#btn-show-seleksi').html('Seleksi [-]');
       }
@@ -138,17 +138,17 @@
         'name' : 'tahap',
         'value' : tahap,
         'type' : 'hidden'
-      })).
-      append(jQuery('<input>', {
-        'name' : 'id_fakultas',
-        'value' : fakultas,
-        'type' : 'hidden'
-      })).
-      append(jQuery('<input>', {
-        'name' : 'id_subbag',
-        'value' : subbag,
-        'type' : 'hidden'
-      }));
+      }))
+      // .append(jQuery('<input>', {
+      //   'name' : 'id_fakultas',
+      //   'value' : fakultas,
+      //   'type' : 'hidden'
+      // })).
+      // append(jQuery('<input>', {
+      //   'name' : 'id_subbag',
+      //   'value' : subbag,
+      //   'type' : 'hidden'
+      // }));
       newForm.appendTo($('#form-form'));
       newForm.submit();
 
@@ -260,22 +260,19 @@
  function showPleaseWait() {
   var modalLoading = '<div class="modal" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false role="dialog">\
   <div class="modal-dialog" id="modal-dialog">\
-    <div class="modal-content">\
-      <div class="modal-header">\
-        <h4 class="modal-title">Mohon Tunggu...</h4>\
-      </div>\
-      <div class="modal-body">\
-        <div class="progress">\
-          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar"\
-          aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%; height: 40px">\
-        </div>\
-      </div>\
-    </div>\
+  <div class="modal-content">\
+  <div class="modal-body">\
+  <div class="sk-spinner sk-spinner-three-bounce">\
+  <div class="sk-bounce1"></div>\
+  <div class="sk-bounce2"></div>\
+  <div class="sk-bounce3"></div>\
   </div>\
-</div>\
-</div>';
-$(document.body).append(modalLoading);
-$("#pleaseWaitDialog").modal("show");
+  </div>\
+  </div>\
+  </div>\
+  </div>';
+  $(document.body).append(modalLoading);
+  $("#pleaseWaitDialog").modal("show");
 }
 
 /**

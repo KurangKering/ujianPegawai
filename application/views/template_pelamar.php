@@ -11,7 +11,6 @@
 
   <?php echo $css; ?>
   
-
   <!-- Mainly scripts -->
   <script src="<?php echo base_url('assets/templates/inspinia_271/') ?>js/jquery-3.1.1.min.js"></script>
   <script src="<?php echo base_url('assets/templates/inspinia_271/') ?>js/bootstrap.min.js"></script>
@@ -76,31 +75,32 @@
                         </ul>
                     </li>
                   </ul> -->
-                  <!-- <ul class="nav navbar-top-links navbar-right">
+                  <ul class="nav navbar-top-links navbar-right">
+                     <li>
+                     <a href="<?php echo site_url(). 'pelamar'; ?>" title="">Home</a>
+                   </li>
                     <li>
-                      <a href="<?php echo base_url('calpeg/logout') ?>">
-                        <span><?php echo $this->session->userdata('calpeg')['nama'] ?></span> <i class="fa fa-sign-out"></i> 
-                      </a>
-                    </li>
-                  </ul> -->
-                </div>
-              </nav>
+                     <a href="<?php echo site_url(). 'pelamar/info_kelulusan'; ?>" title="">Info kelulusan</a>
+                   </li>
+                 </ul>
+               </div>
+             </nav>
+           </div>
+           <div class="wrapper wrapper-content">
+            <div class="container">
+              <?php echo $content; ?>
             </div>
-            <div class="wrapper wrapper-content">
-              <div class="container">
-                <?php echo $content; ?>
-              </div>
-            </div>
-            <div class="footer">
-              <div class="pull-right">
-               Template By Inspinia
-             </div>
-             <div>
-              <strong>Copyright</strong> Ilham Rahmadhani &copy; 2018
-            </div>
+          </div>
+          <div class="footer">
+            <div class="pull-right">
+             Template By Inspinia
+           </div>
+           <div>
+            <strong>Copyright</strong> Ilham Rahmadhani &copy; 2018
           </div>
         </div>
       </div>
+    </div>
 
-    </body>
-    </html>
+  </body>
+  </html>

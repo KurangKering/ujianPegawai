@@ -1,16 +1,15 @@
- 
- <div class="row">
-    <div class="col-lg-12">
-        <div class="ibox float-e-margins">
-            
-    <div class="ibox-content">
+<style>
+	h1 { font-size: 50px; }
+	article { font: 20px Helvetica, sans-serif; color: #333; }
+	article { display: block; text-align: left; width: 650px; margin: 0 auto; }
+	a { color: #dc8100; text-decoration: none; }
+	a:hover { color: #333; text-decoration: none; }
+</style>
 
-        <div class="table table-striped">
-            <h3 class="no-margins">Form Pengajuan Ditutup</h3>
-            <small>Nantikan Periode Selanjutnya.</small> <a href="<?php echo site_url(). 'pelamar' ?>" title="">Kembali</a>
-        </div>
-
-    </div>
-</div>
-</div>
-</div>
+<article>
+	<h1>Pengajuan Ditutup !</h1>
+	<div>
+		<p>Pengajuan Lamaran Pada Periode Ini Telah Ditutup. Nantikan Periode Selanjutnya.</p>
+		<p><a href="<?php echo site_url() . 'pelamar' ?>" title="">Kembali</a></p>
+	</div>
+</article>
