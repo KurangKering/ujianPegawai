@@ -1,70 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-  <head>
+<head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sistem Ujian Penerimaan Pegawai</title>
+    <title>INSPINIA | Register</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="<?php echo base_url('assets/templates/landing_page/'); ?>vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/templates/inspinia_271/') ?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/templates/inspinia_271/') ?>font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/templates/inspinia_271/') ?>css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/templates/inspinia_271/') ?>css/animate.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets/templates/inspinia_271/') ?>css/style.css" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href="<?php echo base_url('assets/templates/landing_page/'); ?>vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url('assets/templates/landing_page/'); ?>vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
 
-    <!-- Custom styles for this template -->
-    <link href="<?php echo base_url('assets/templates/landing_page/'); ?>css/landing-page.min.css" rel="stylesheet">
+<body class="gray-bg">
 
-  </head>
+    <!-- <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
 
-  <body>
+                <h1 class="logo-name">IN+</h1>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-light bg-light static-top">
-      <div class="container">
-        <a class="navbar-brand" href="#"></a>
-        <a class="btn btn-primary" href="<?php echo base_url('personalia/login'); ?>">Sign In</a>
-      </div>
-    </nav>
-
-    <!-- Masthead -->
-    <header class="masthead text-white text-center">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore</h1>
-          </div>
-          <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
-            <form action="<?php echo base_url('calpeg/pengajuan'); ?>" method="post">
-              <div class="form-row">
-                <div class="col-12 col-md-9 mb-2 mb-md-0">
-                  <input type="text" class="form-control form-control-lg" name="noKtp" placeholder="Masukkan No KTP...">
+            </div>
+            <h3>Register to IN+</h3>
+            <p>Create account to see it in action.</p>
+            <form class="m-t" role="form" action="login.html">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name" required="">
                 </div>
-                <div class="col-12 col-md-3">
-                  <button type="submit" class="btn btn-block btn-lg btn-primary">Daftar</button>
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email" required="">
                 </div>
-              </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" required="">
+                </div>
+                <div class="form-group">
+                        <div class="checkbox i-checks"><label> <input type="checkbox"><i></i> Agree the terms and policy </label></div>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+
+                <p class="text-muted text-center"><small>Already have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="login.html">Login</a>
             </form>
-          </div>
+            <p class="m-t"> <small>Inspinia we app framework base on Bootstrap 3 &copy; 2014</small> </p>
         </div>
-      </div>
-    </header>
+    </div> -->
+    <div class="middle-box  animated fadeInDown">
+        <div>
 
-    <!-- Footer -->
-    
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="<?php echo base_url('assets/templates/landing_page/'); ?>vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo base_url('assets/templates/landing_page/'); ?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+           <form class="m-t" role="form" action="<?php echo base_url('calpeg/pengajuan') ?>" method="get">
+              <div class="col-sm-10">
 
-  </body>
+              <div class="input-group"><input type="text" class="form-control" placeholder="Input NIK" required="" name="nik"> <span class="input-group-btn"> <button type="submit" class="btn btn-primary">Ajukan
+                </button> </span></div>
+            </div>
+        </div>
+    </form>
+
+</div>
+</div>
+
+<!-- Mainly scripts -->
+<script src="<?php echo base_url('assets/templates/inspinia_271/') ?>js/jquery-3.1.1.min.js"></script>
+<script src="<?php echo base_url('assets/templates/inspinia_271/') ?>js/bootstrap.min.js"></script>
+
+
+</body>
 
 </html>

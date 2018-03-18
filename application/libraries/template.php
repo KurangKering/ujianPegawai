@@ -57,7 +57,7 @@ function js_add($script,$type = 'import',$defer = FALSE)
      $js .= ' defer="defer"';
    }
    $js .= ">";
-   $js .= $script;
+   $js .= htmlspecialchars_decode($script);
    $js .= '</script>';
    break;
    default:
@@ -133,7 +133,7 @@ function title($data)
 {
   $this->_title = $data;
 }
-function _view($view,$data)
+function _view($view,$data = "")
 {        
   $this->_data['title'] = $this->_title;
   $this->_data['content'] = $this->ci->load->view($view,$data,TRUE);

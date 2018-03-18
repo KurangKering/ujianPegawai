@@ -1,0 +1,13 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+$config['protocol'] = 'smtp';
+$config['smtp_host'] = 'ssl://smtp.gmail.com';
+$config['smtp_port'] = 465;
+$config['smtp_timeout'] = '30';
+$config['smtp_user'] = 'uir.ujian@gmail.com';
+$config['smtp_pass'] = 'assasyin149';
+$config['charset'] = 'utf-8';
+$config['mailtype'] = 'html';
+$config['wordwrap'] = true;
+$config['newline'] = "\r\n";
+$config['newline'] = "\r\n";
+$config['smtp_timeout'] = 30;

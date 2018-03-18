@@ -20,6 +20,32 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+
+		
 		$this->load->view('vw_homepage');
+	}
+
+	public function login()
+	{
+
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		if ($this->form_validation->run() == TRUE) {
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+
+			$role = $this->user->login();
+			if ($role === '-1') {
+				redirect('personalia','refresh');
+			} else
+			if ($role === '0') {
+				redirect('kabag','refresh');
+			} else
+			$this->session->set_flashdata('error', 'Username/Password Salah');
+		} else {
+			$this->load->view('login');
+		}
+		
+
 	}
 }
